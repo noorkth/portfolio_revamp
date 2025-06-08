@@ -3,16 +3,39 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Noor Kayastha - IT Professional & Drone Enthusiast portfolio">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Noor Kayastha – IT professional with a passion for drone videography, video editing, music, and skilled in piano and bass guitar.">
+    <meta name="keywords" content="Noor Kayastha, IT Professional, Videographer, Drone Pilot, Nepal, Portfolio">
     <meta name="author" content="Noor Kayastha">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.noorkayastha.com.np/">
+    <meta property="og:title" content="Noor Kayastha | IT Professional & Creative">
+    <meta property="og:description" content="Portfolio of Noor Kayastha - IT Professional, Videographer, and Musician">
+    <meta property="og:image" content="https://www.noorkayastha.com.np/img/1.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Noor Kayastha | IT Professional & Creative">
+    <meta name="twitter:description" content="Portfolio of Noor Kayastha - IT Professional, Videographer, and Musician">
+    <meta name="twitter:image" content="https://www.noorkayastha.com.np/img/1.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.noorkayastha.com.np/">
     
     <title>Noor Kayastha | IT Professional & Drone Enthusiast</title>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style">
     <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="img/1.jpg" as="image">
     
     <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="img/nk.png">
     
     <!-- CSS -->
@@ -29,10 +52,42 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/responsive.css">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CK4ZN4QTJ0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CK4ZN4QTJ0');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Noor Kayastha",
+      "jobTitle": "IT Professional",
+      "url": "https://www.noorkayastha.com.np/",
+      "sameAs": [
+        "https://www.linkedin.com/in/noorkth1100/",
+        "https://www.instagram.com/noorkth",
+        "https://www.youtube.com/@noorkth"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kathmandu",
+        "addressCountry": "Nepal"
+      }
+    }
+    </script>
+
     <!-- Modernizr for feature detection -->
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" defer></script>
 </head>
 <body data-spy="scroll" data-target="#navmenu" data-offset="70">
+    <!-- Skip to content link for accessibility -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-preloader-wrap">
         <div class="spinner"></div>
     </div>
@@ -312,7 +367,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="default-btn submit-button">
+                                    <button type="submit" class="default-btn submit-button" onclick="googleTracker('button', 'submit Button')">
                                         <span class="submit-text">Send Message</span>
                                         <span class="loading-icon" style="display:none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
                                     </button>
