@@ -349,6 +349,12 @@ a,a:hover, .overlay, img, .form-control,  .form-control:hover, button{
     border-bottom: 0;
     padding: 0;
 }
+
+.social-link li a {
+    color: #fff;
+    font-size: 20px;
+    margin: 0 10px;
+}
 .mainmenu .download-btn{
     background-color: #ef5560;
     box-shadow: 0 10px 35px 2px rgba(239, 85, 96, 0.8);
@@ -648,6 +654,38 @@ ul.nav > li > a.active{
 /* ==========================================================================
    Portfolio Section
    ========================================================================== */
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-box:hover .portfolio-overlay {
+    transform: translateY(0);
+}
+
+.portfolio-thumb {
+    position: relative;
+    overflow: hidden;
+    background: #2a2a2a;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.hover i.fa-search-plus {
+    font-size: 30px;
+    color: white;
+}
+
 .portfolio-section{
     padding-bottom: 0;
 }
@@ -744,14 +782,56 @@ ul.nav > li > a.active{
 #form-messages.alert-success{
     display: block;
 }
-/*Google Map*/
-#google-map{
-    width: 50%;
-    height: 100%;
+/* Form Status Messages */
+#form-result {
+    display: none;
+    padding: 15px 35px 15px 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+    position: relative;
+}
+.close-message {
     position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.form-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.form-error {
+    background-color: #f44336;
+    color: white;
+}
+/* Close Button */
+.close-message {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+}
+/* Loading State */
+.loading-icon {
+    display: none;
+}
+
+.is-submitting .submit-text {
+    display: none;
+}
+
+.is-submitting .loading-icon {
+    display: inline-block;
+}
+/*Google Map*/
+.map-container iframe {
+  width: 100%;
+  height: 400px;
+  border: 0;
 }
 /* ==========================================================================
    Footer Section

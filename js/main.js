@@ -85,7 +85,7 @@
 
         var mapOptions = {
             zoom: 11,
-            center: new google.maps.LatLng(40.6700, -73.9400), 
+            center: new google.maps.LatLng(27.7066795,85.3317542), 
             scrollwheel: false,
             navigationControl: false,
             mapTypeControl: false,
@@ -107,3 +107,69 @@
 
 
 })(jQuery);
+
+// Formspree Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-button');
+            const submitText = form.querySelector('.submit-text');
+            const loadingIcon = form.querySelector('.loading-icon');
+            const formResult = document.getElementById('form-result');
+            
+            // Show loading state
+            submitText.style.display = 'none';
+            loadingIcon.style.display = 'inline-block';
+            formResult.style.display = 'none';
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    formResult.innerHTML = 'Message sent successfully! I will get back to you soon. <span class="close-message">&times;</span>';
+                    formResult.classList.add('form-success');
+                    formResult.classList.remove('form-error');
+                    formResult.style.display = 'block';
+                    form.reset();
+                    
+                    // Add click handler for close button
+                    formResult.querySelector('.close-message').addEventListener('click', () => {
+                        formResult.style.display = 'none';
+                    });
+                    
+                    // Hide the message after 5 seconds
+                    const successTimer = setTimeout(() => {
+                        formResult.style.display = 'none';
+                        clearTimeout(successTimer);
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                formResult.innerHTML = 'Oops! Something went wrong. Please try again or contact me directly. <span class="close-message">&times;</span>';
+                formResult.classList.add('form-error');
+                formResult.classList.remove('form-success');
+                formResult.style.display = 'block';
+                
+                // Add click handler for close button
+                formResult.querySelector('.close-message').addEventListener('click', () => {
+                    formResult.style.display = 'none';
+                });
+            })
+            .finally(() => {
+                submitText.style.display = 'inline-block';
+                loadingIcon.style.display = 'none';
+            });
+        });
+    }
+});
