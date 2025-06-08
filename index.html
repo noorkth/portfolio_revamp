@@ -229,58 +229,86 @@
                 </div>
                 <div class="col-md-8">
                     <div class="row portfolio-items">
-                        <!-- Portfolio Items -->
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="portfolio-box">
-                                <div class="portfolio-thumb">
-                                    <img src="img/drone-aerial.jpg" alt="Aerial view of Kathmandu valley at sunset" width="400" height="300" loading="lazy">
-                                    <div class="portfolio-overlay">
-                                        <h4>Kathmandu Valley</h4>
-                                        <p>Aerial Photography</p>
-                                    </div>
-                                </div>
-                                <a href="img/drone-aerial.jpg" class="hover img-popup" data-gall="portfolio" aria-label="View larger image of Kathmandu valley aerial shot">
-                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                        <!-- Portfolio Item with Video Carousel -->
+<div class="col-lg-4 col-sm-6">
+    <div class="portfolio-box">
+        <div class="portfolio-thumb">
+            <!-- Video Carousel -->
+            <div id="videoCarousel1" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="ratio ratio-16x9">
+                            <iframe loading="lazy" 
+                                src="https://www.youtube.com/embed/_yKmyA5c5eg?autoplay=1&mute=1&loop=1&playlist=_yKmyA5c5eg&controls=0&showinfo=0&modestbranding=1&rel=0"
+                                title="Drone Videography Project"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
                         </div>
+                    </div>                    
+                </div>               
+            </div>
+            
+            <div class="portfolio-overlay">
+                <h4>Kathmandu Valley</h4>
+                <p>Aerial Videography</p>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=_yKmyA5c5eg" class="hover" target="_blank" aria-label="View drone videography project">
+            <i class="fa fa-play" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                        <!-- Additional portfolio items with similar structure -->
-                        <!-- ... -->
-                        <!-- Portfolio Item 2 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="portfolio-box">
-                            <div class="portfolio-thumb">
-                                <img src="img/festival.jpg" alt="Biska Jatra 2082" loading="lazy">
-                                <div class="portfolio-overlay">
-                                    <h4>Biska Jatra 2082</h4>
-                                    <p>Aerial Videography</p>
-                                </div>
-                            </div>
-                            <a href="img/festival.jpg" class="hover img-popup" data-gall="portfolio" aria-label="View wedding cinematography sample">
-                                <i class="fa fa-search-plus"></i>
-                            </a>
+<!-- Regular Image Portfolio Item (unchanged) -->
+<div class="col-lg-4 col-sm-6">
+    <div class="portfolio-box">
+        <div class="portfolio-thumb">
+            <img src="img/festival.jpg" alt="Biska Jatra 2082" loading="lazy">
+            <div class="portfolio-overlay">
+                <h4>Biska Jatra 2082</h4>
+                <p>Aerial Photography</p>
+            </div>
+        </div>
+        <a href="img/festival.jpg" class="hover img-popup" data-gall="portfolio" aria-label="View wedding cinematography sample">
+            <i class="fa fa-search-plus"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Another Video Carousel Portfolio Item -->
+<div class="col-lg-4 col-sm-6">
+    <div class="portfolio-box">
+        <div class="portfolio-thumb">
+            <!-- Video Carousel -->
+            <div id="videoCarousel2" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="ratio ratio-16x9">
+                            <iframe loading="lazy" 
+                                src="https://www.youtube.com/embed/uvP8ClTY8ZI?autoplay=1&mute=1&loop=1&playlist=uvP8ClTY8ZI&controls=0&showinfo=0&modestbranding=1&rel=0"
+                                title="Creative Videography Project"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                    </div>
+                    </div>                    
+                </div>                
+            </div>
+            
+            <div class="portfolio-overlay">
+                <h4>Eastern Nepal</h4>
+                <p>Travel Stories</p>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=uvP8ClTY8ZI" class="hover" target="_blank" aria-label="View event coverage sample">
+            <i class="fa fa-play" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
 
-                    <!-- Portfolio Item 3 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="portfolio-box">
-                            <div class="portfolio-thumb">
-                                <img src="img/grading.gif" alt="Before and after video editing comparison" loading="lazy">
-                                <div class="portfolio-overlay">
-                                    <h4>Color Grading</h4>
-                                    <p>Video Editing</p>
-                                </div>
-                            </div>
-                            <a href="img/grading.gif" class="hover img-popup" data-gall="portfolio" aria-label="View video editing transformation">
-                                <i class="fa fa-search-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Portfolio Item 4 -->
-                    <div class="col-lg-4 col-sm-6">
+<!-- Regular Image Portfolio Item (unchanged) -->
+<div class="col-lg-4 col-sm-6">
                         <div class="portfolio-box">
                             <div class="portfolio-thumb">
                                 <img src="img/pc.jpg" alt="Custom gaming PC build" loading="lazy">
@@ -294,25 +322,38 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- Portfolio Item 5 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="portfolio-box">
-                            <div class="portfolio-thumb">
-                                <img src="img/construction.jpg" alt="Construction Site" loading="lazy">
-                                <div class="portfolio-overlay">
-                                    <h4>Construction Site</h4>
-                                    <p>Drone Videography</p>
-                                </div>
-                            </div>
-                            <a href="img/construction.jpg" class="hover img-popup" data-gall="portfolio" aria-label="View portfolio website design">
-                                <i class="fa fa-search-plus"></i>
-                            </a>
+<!-- Another Video Carousel Portfolio Item -->
+<div class="col-lg-4 col-sm-6">
+    <div class="portfolio-box">
+        <div class="portfolio-thumb">
+            <!-- Video Carousel -->
+            <div id="videoCarousel2" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="ratio ratio-16x9">
+                            <iframe loading="lazy" 
+                                src="https://www.youtube.com/embed/OXeJKb3AdmU?autoplay=1&mute=1&loop=1&playlist=OXeJKb3AdmU&controls=0&showinfo=0&modestbranding=1&rel=0"
+                                title="Creative Videography Project"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                    </div>
-
-                    <!-- Portfolio Item 6 -->
-                    <div class="col-lg-4 col-sm-6">
+                    </div>                    
+                </div>
+            </div>
+            
+            <div class="portfolio-overlay">
+                <h4>Cinematic Shots</h4>
+                <p>Short Travel Movie</p>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=OXeJKb3AdmU" class="hover" target="_blank" aria-label="View event coverage sample">
+            <i class="fa fa-play" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+<!-- Regular Image Portfolio Item (unchanged) -->
+<div class="col-lg-4 col-sm-6">
                         <div class="portfolio-box">
                             <div class="portfolio-thumb">
                                 <img src="img/live.gif" alt="Event coverage drone shot" loading="lazy">
