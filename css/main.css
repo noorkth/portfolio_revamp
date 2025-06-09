@@ -1001,6 +1001,7 @@ ul.nav > li > a.active{
 }
 
 .about-section {
+    background-color: #000 !important;  /* Pure black background */
     position: relative;
     overflow: hidden;
 }
@@ -1026,12 +1027,20 @@ ul.nav > li > a.active{
     height: 100%;
     background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
 }
-
+.min-vh-80 {
+    min-height: 80vh;  /* Section takes at least 80% of viewport height */
+}
 .about-content {
+    background-color: rgba(10, 10, 10, 0.9) !important;
+    border-left: 4px solid var(--primary-color);  /* Accent border */
+    transition: all 0.3s ease;
     position: relative;
     z-index: 2;
 }
-
+.about-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
 .text-gradient {
     background: linear-gradient(45deg, #9e9a9a, #b1aeaf);
     -webkit-background-clip: text;
@@ -1046,5 +1055,192 @@ ul.nav > li > a.active{
     }
     .portrait-overlay {
         background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+    }
+}
+.circular-portrait {
+    border-radius: 50%;
+    overflow: hidden;
+    /* border: 8px solid rgba(231, 238, 236, 0.1); */
+    /* box-shadow: 0 0 40px rgba(230, 36, 78, 0.3);  Cyan glow effect */
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.circular-portrait:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 50px #ff4c4c(231, 32, 32, 0.5);
+}
+
+.circular-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;  /* Better face positioning */
+}
+/* For responsive sizing */
+@media (max-width: 992px) {
+    .circular-portrait {
+        width: 250px;
+        height: 250px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .circular-portrait {
+        width: 200px;
+        height: 200px;
+    }
+}
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .circular-portrait {
+        width: 350px !important;
+        height: 350px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .min-vh-80 {
+        min-height: auto;
+        padding: 4rem 0;
+    }
+    
+    .circular-portrait {
+        width: 300px !important;
+        height: 300px !important;
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        padding: 3rem !important;
+    }
+    
+    .circular-portrait {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    
+    .lead {
+        font-size: 1.1rem !important;
+    }
+}
+/* 21:9 Background Image Styling */
+.about-section {
+    overflow: hidden;
+}
+
+.bg-image-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.bg-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bg-dark-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Ensure content stays above background */
+.container-fluid, 
+.about-wrap, 
+.about-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* 21:10 Aspect Ratio Section */
+.about-section {
+    aspect-ratio: 21/10;
+    width: 100%;
+    position: relative;
+}
+
+/* Background Image */
+.bg-image-container {
+    z-index: 0;
+}
+
+.bg-image-container img {
+    min-height: 100%;
+}
+
+/* Dark Overlay */
+.bg-dark-overlay {
+    background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+    z-index: 1;
+}
+
+/* Content Styling */
+.about-content {
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 2;
+}
+
+.circular-portrait {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 30px #ff4c4c(0,255,255,0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199.98px) {
+    .about-section {
+        aspect-ratio: 16/9;
+    }
+    
+    .circular-portrait {
+        width: 350px !important;
+        height: 350px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .about-section {
+        aspect-ratio: auto;
+        min-height: 100vh;
+    }
+    
+    .circular-portrait {
+        width: 300px !important;
+        height: 300px !important;
+        margin-bottom: 2rem;
+    }
+    
+    .about-content {
+        padding: 2rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .circular-portrait {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .btn:last-child {
+        margin-bottom: 0;
     }
 }

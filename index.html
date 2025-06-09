@@ -132,26 +132,43 @@
         </div>
     </section>
 
-    <section id="about" class="about-section bg-dark">
-    <div class="container-fluid">
-        <div class="row about-wrap align-items-center">
-            <div class="col-lg-6 col-xl-6">
-                <div class="about-content p-4 p-lg-5">
-                    <div class="section-heading mb-4">
-                       <h2 class="text-gradient">About Me</h2>
-                    </div>
-                    <p class="lead">Hi, I'm Noor Kayastha - a passionate IT professional with a creative edge. When I'm not troubleshooting hardware or writing code, you'll find me capturing breathtaking aerial footage or composing music.</p>
-                    <p class="lead">My unique combination of technical skills and artistic vision allows me to approach problems from multiple perspectives. I believe the best solutions come when logic meets creativity.</p>
-                    <div class="mt-4">
-                        <a href="#works" class="btn btn-primary btn-lg me-3">See My Works</a>
-                        <a href="#contact" class="btn btn-outline-light btn-lg">Contact Me</a>
-                    </div>
+<section id="about" class="about-section position-relative overflow-hidden">
+    <!-- 21:10 Background Image -->
+    <div class="bg-image-container position-absolute w-100 h-100">
+        <img src="img/drone-aerial.jpg" alt="Aerial Background" 
+             class="img-fluid w-100 h-100" 
+             style="object-fit: cover; object-position: center;">
+    </div>
+    
+    <!-- Dark Overlay -->
+    <div class="bg-dark-overlay position-absolute w-100 h-100 top-0 start-0"></div>
+    
+    <!-- Content Container -->
+    <div class="container-fluid position-relative h-100">
+        <div class="row align-items-center justify-content-center min-vh-100 py-5">
+            <!-- Portrait Column -->
+            <div class="col-lg-5 col-xl-5 d-flex justify-content-center p-4 p-lg-5 order-lg-1 order-2">
+                <div class="circular-portrait" style="width: min(100%, 400px); height: min(100%, 400px);">
+                    <img src="img/Noor.jpg" alt="Noor Kayastha" 
+                         class="img-fluid h-100 w-100" 
+                         style="object-fit: cover; object-position: top center;">
                 </div>
             </div>
-            <div class="col-lg-6 col-xl-6 p-0">
-                <div class="about-image-container">
-                    <img src="img/Noor.jpg" alt="Noor Kayastha portrait" loading="lazy" class="img-fluid about-portrait">
-                    <div class="portrait-overlay"></div>
+            
+            <!-- Content Column -->
+            <div class="col-lg-6 col-xl-6 order-lg-2 order-1 p-4 p-lg-5">
+                <div class="about-content bg-dark-90 rounded-4 p-4 p-lg-5 shadow-lg">
+                    <div class="section-heading mb-4">
+                        <h2 class="mb-20">About Me</h2>
+                    </div>
+                    <div class="content-text">
+                        <p class="mb-20">Hi, I'm Noor Kayastha - a passionate IT professional with a creative edge. When I'm not troubleshooting hardware or writing code, you'll find me capturing breathtaking aerial footage or composing music.</p>
+                        <p class="mb-20">My unique combination of technical skills and artistic vision allows me to approach problems from multiple perspectives. I believe the best solutions come when logic meets creativity.</p>
+                    </div>
+                    <div class="button-group mt-4">
+                        <a href="#works" class="default-btn">My Works</a>
+                        <a href="#contact" class="default-btn">Contact</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,7 +279,7 @@
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
                                                     <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Highlights of 2081</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2024</span> Aerial Videography</p>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Aerial Videography</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -272,14 +289,14 @@
                                 <!-- Project 2 - Image -->
                                 <div class="horizontal-scroller-item col-12 col-lg-8">
                                     <div class="p-relative uniform-portfolio-item">
-                                        <a href="img/drone-aerial.jpg" class="img-popup" data-gall="portfolio">
+                                        <a href="img/123.JPG" class="img-popup" data-gall="portfolio">
                                             <div class="overlay overlay-show overlay-gradient-bottom-content">
                                                 <div class="ratio ratio-16x9">
-                                                    <img class="horizontal-scroller-image img-fluid border-radius-0 object-fit-cover" src="img/drone-aerial.jpg" alt="Sunset from Kathmandu Valley" loading="lazy" />
+                                                    <img class="horizontal-scroller-image img-fluid border-radius-0 object-fit-cover" src="img/123.JPG" alt="Sunset from Kathmandu Valley" loading="lazy" />
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
-                                                    <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Sunset from Kathmandu Valley</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2023</span> Aerial Photography</p>
+                                                    <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Konjyosom Pratima Buddhist Temple</h4>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Aerial Photography</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -302,7 +319,7 @@
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
                                                     <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Eastern Nepal</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2024</span> Travel Stories</p>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Travel Stories</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -319,7 +336,7 @@
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
                                                     <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Custom PC Build</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2023</span> Hardware Specialist</p>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Hardware Specialist</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -342,7 +359,7 @@
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
                                                     <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Cinematic Shots</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2024</span> Short Travel Movie</p>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Short Travel Movie</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -359,7 +376,7 @@
                                                 </div>
                                                 <div class="p-absolute bottom-0 left-0 p-5 w-100 d-none d-lg-block">
                                                     <h4 class="custom-font-1 text-9 line-height-4 mb-0 font-weight-semi-bold text-color-light p-relative z-index-10">Event Coverage</h4>
-                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2">-2023</span> Festivals in Kathmandu</p>
+                                                    <p class="text-color-light text-4 p-relative z-index-10"><span class="opacity-6 d-inline-block pe-2"></span> Festivals in Kathmandu</p>
                                                 </div>
                                             </div>
                                         </a>
