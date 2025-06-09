@@ -524,6 +524,12 @@ ul.nav > li > a.active{
     height: 100vh;
     position: relative;
 }
+
+/* .img-right {
+    margin-left: auto;
+    display: block;
+} */
+
 .hero-content h1{
     font-size: 80px;
     text-transform: uppercase;
