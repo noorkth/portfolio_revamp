@@ -173,3 +173,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.horizontal-scroller-scroll');
+    const scrollLeftBtn = document.querySelector('.scroller-arrow-left');
+    const scrollRightBtn = document.querySelector('.scroller-arrow-right');
+    const scrollItems = document.querySelectorAll('.horizontal-scroller-item');
+    
+    if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
+        // Calculate scroll amount (width of one item + margin)
+        const scrollAmount = scrollItems[0].offsetWidth + 20;
+        
+        scrollLeftBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        scrollRightBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Hide left arrow initially
+        scrollLeftBtn.style.display = 'none';
+        
+        // Show/hide arrows based on scroll position
+        scrollContainer.addEventListener('scroll', () => {
+            const scrollLeft = scrollContainer.scrollLeft;
+            const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            
+            scrollLeftBtn.style.display = scrollLeft > 0 ? 'flex' : 'none';
+            scrollRightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
+        });
+    }
+});
