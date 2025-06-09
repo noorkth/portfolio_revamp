@@ -974,3 +974,23 @@ ul.nav > li > a.active{
         display: none;
     }
 }
+.uniform-portfolio-item {
+    width: 100%;
+    height: 100%;
+}
+
+.ratio-16x9 {
+    aspect-ratio: 16/9;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.horizontal-scroller-item {
+    flex: 0 0 auto;
+    width: 400px; /* Adjust this value to your preferred width */
+    margin-right: 15px; /* Adjust spacing between items */
+}
