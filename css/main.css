@@ -1244,3 +1244,32 @@ ul.nav > li > a.active{
         margin-bottom: 0;
     }
 }
+/* Add these styles to your existing CSS */
+    .slide-controls {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .horizontal-scroller-images {
+        scroll-behavior: smooth;
+        transition: scroll 0.5s ease-in-out;
+    }
+    
+    /* Improve arrow visibility */
+    .scroller-arrow {
+        background: rgba(0,0,0,0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+    
+    .scroller-arrow:hover {
+        background: rgba(0,0,0,0.8);
+        transform: scale(1.1);
+    }
+    
