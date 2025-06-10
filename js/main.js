@@ -165,32 +165,32 @@ function initializeHorizontalScroller() {
     
     // Handle arrow button clicks
     if (scrollLeftBtn && scrollRightBtn) {
-        scrollLeftBtn.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
+    scrollLeftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
         });
-        
-        scrollRightBtn.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
         });
+    });
+    
+    // Hide left arrow initially
+    scrollLeftBtn.style.display = 'none';
+    
+    // Show/hide arrows based on scroll position
+    scrollContainer.addEventListener('scroll', () => {
+        const scrollLeft = scrollContainer.scrollLeft;
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
         
-        // Hide left arrow initially
-        scrollLeftBtn.style.display = 'none';
-        
-        // Show/hide arrows based on scroll position
-        scrollContainer.addEventListener('scroll', () => {
-            const scrollLeft = scrollContainer.scrollLeft;
-            const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-            
-            scrollLeftBtn.style.display = scrollLeft > 0 ? 'flex' : 'none';
-            scrollRightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
-        });
-    }
+        scrollLeftBtn.style.display = scrollLeft > 0 ? 'flex' : 'none';
+        scrollRightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
+    });
+} 
     
     // Enable smooth scrolling with mouse wheel
     scrollContainer.addEventListener('wheel', (e) => {
