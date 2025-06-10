@@ -606,10 +606,11 @@ ul.nav > li > a.active{
    ========================================================================== */
 .about-section {
     position: relative;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding-bottom: -9rem;
+    padding-top: -11rem;
 }
 
 .bg-image-container {
@@ -758,7 +759,7 @@ ul.nav > li > a.active{
 /* Row and Column Adjustments */
 .about-section .row {
     align-items: center;
-    min-height: 80vh;
+    padding: 4rem 0;
 }
 
 .about-section .col-lg-5,
@@ -792,7 +793,7 @@ ul.nav > li > a.active{
     position: relative;
     z-index: 1;
     margin-top: -1px;
-    padding-bottom: 9rem;
+    padding-bottom: 1rem;
 }
 
 .service-section::before {
