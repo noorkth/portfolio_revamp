@@ -108,6 +108,9 @@
     <img src="img/logo.png" alt="Noor Kayastha Logo" width="150" height="50" loading="eager" decoding="async">
     <img src="img/Noor.jpg" alt="Noor Kayastha" width="300" height="300" loading="eager" decoding="async">
     <img src="img/festival.jpg" alt="Festival Celebration" width="800" height="600" loading="lazy" decoding="async"> -->
+
+    <!-- Add video-modal.js before other scripts -->
+    <script src="js/video-modal.js"></script>
 </head>
 <body data-spy="scroll" data-target="#navmenu" data-offset="70">
     <!-- Skip to content link for accessibility -->
@@ -349,7 +352,7 @@
                     </div>
 
                     <!-- Project 4 - Video -->
-                    <div class="project-item">
+                    <div class="project-item video-item" data-video="videos/custom-pc-build.mp4">
                         <div class="project-content">
                             <div class="ratio ratio-16x9">
                                 <video class="project-video" 
@@ -369,11 +372,11 @@
                                 <div class="project-info">
                                     <h3>Custom PC Build</h3>
                                     <p>Hardware Specialist</p>
-                                    <!-- <a href="videos/custom-pc-build.mp4" class="project-link video-popup custom-close" data-type="video"> -->
-                                        <!-- <i class="fa fa-search-plus"></i> Bigger Picture -->
-                                    </a>
                                 </div>
                             </div>
+                            <a href="#" class="watch-video-btn" onclick="openVideoModal('videos/custom-pc-build.mp4')">
+                                <i class="fa fa-play"></i> Watch Video
+                            </a>
                         </div>
                     </div>
 
@@ -402,7 +405,7 @@
                     </div>
 
                     <!-- Project 6 - Video -->
-                    <div class="project-item">
+                    <div class="project-item video-item" data-video="videos/laptop.mp4">
                         <div class="project-content">
                             <div class="ratio ratio-16x9">
                                 <video class="project-video" 
@@ -422,11 +425,11 @@
                                 <div class="project-info">
                                     <h3>Thermalpaste Replacement</h3>
                                     <p>Laptop & PC Servicing</p>
-                                    <!-- <a href="videos/custom-pc-build.mp4" class="project-link video-popup custom-close" data-type="video"> -->
-                                        <!-- <i class="fa fa-search-plus"></i> Bigger Picture -->
-                                    </a>
                                 </div>
                             </div>
+                            <a href="#" class="watch-video-btn" onclick="openVideoModal('videos/laptop.mp4')">
+                                <i class="fa fa-play"></i> Watch Video
+                            </a>
                         </div>
                     </div>
                 </div>

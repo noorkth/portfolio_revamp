@@ -206,6 +206,67 @@ document.addEventListener('DOMContentLoaded', function() {
     ]).then(() => {
         portfolioSection.classList.remove('loading');
     });
+
+    // Video Modal Functionality
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const closeBtn = modal.querySelector('.video-modal-close');
+    const videoCards = document.querySelectorAll('.project-item[data-video]');
+
+    console.log('Modal elements:', { modal, modalVideo, closeBtn });
+    console.log('Video cards:', videoCards);
+
+    // Function to open modal with video
+    function openVideoModal(videoSrc) {
+        console.log('Opening modal with video:', videoSrc);
+        modalVideo.src = videoSrc;
+        modal.classList.add('active');
+        modalVideo.play();
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    // Function to close modal
+    function closeVideoModal() {
+        console.log('Closing modal');
+        modal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = ''; // Clear video source
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Add click event to video cards
+    videoCards.forEach(card => {
+        const videoSrc = card.getAttribute('data-video');
+        const playButton = card.querySelector('.project-link');
+        
+        console.log('Setting up video card:', { card, videoSrc, playButton });
+        
+        if (videoSrc && playButton) {
+            playButton.addEventListener('click', (e) => {
+                console.log('Play button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                openVideoModal(videoSrc);
+            });
+        }
+    });
+
+    // Close modal when clicking close button
+    closeBtn.addEventListener('click', closeVideoModal);
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeVideoModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
 });
 
 // Lazy loading for images and videos
