@@ -14,31 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
+    // Get modal elements
     const modal = document.getElementById('videoModal');
     const modalVideo = document.getElementById('modalVideo');
-    const closeBtn = modal.querySelector('.video-modal-close');
-    const videoItems = document.querySelectorAll('.video-item');
+    const closeBtn = document.querySelector('.video-modal-close');
 
     console.log('Modal elements:', { modal, modalVideo, closeBtn });
-    console.log('Video items:', videoItems);
 
     // Function to open modal with video
-    function openVideoModal(videoSrc) {
+    window.openVideoModal = function(videoSrc) {
         console.log('Opening modal with video:', videoSrc);
-        if (modalVideo) {
+        if (modal && modalVideo) {
             modalVideo.src = videoSrc;
             modal.classList.add('active');
             modalVideo.play();
             document.body.style.overflow = 'hidden';
-        } else {
-            console.error('Modal video element not found');
         }
-    }
+    };
 
     // Function to close modal
     function closeVideoModal() {
         console.log('Closing modal');
-        if (modalVideo) {
+        if (modal && modalVideo) {
             modal.classList.remove('active');
             modalVideo.pause();
             modalVideo.src = '';
@@ -46,21 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add click event to video items
-    videoItems.forEach(item => {
-        const videoSrc = item.getAttribute('data-video');
-        const playButton = item.querySelector('.project-link');
-        
-        console.log('Setting up video item:', { item, videoSrc, playButton });
-        
-        if (videoSrc && playButton) {
-            playButton.addEventListener('click', (e) => {
-                console.log('Play button clicked');
-                e.preventDefault();
-                e.stopPropagation();
-                openVideoModal(videoSrc);
-            });
-        }
+    // Add click event listeners to video buttons
+    document.querySelectorAll('.watch-video-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const videoItem = this.closest('.video-item');
+            if (videoItem) {
+                const videoSrc = videoItem.getAttribute('data-video');
+                if (videoSrc) {
+                    openVideoModal(videoSrc);
+                }
+            }
+        });
     });
 
     // Close modal when clicking close button
@@ -69,15 +63,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Close modal when clicking outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeVideoModal();
-        }
-    });
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+    }
 
     // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
             closeVideoModal();
         }
     });
