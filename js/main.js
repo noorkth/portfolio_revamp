@@ -60,8 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', handleFormSubmit);
     }
 
-    // Horizontal scroller
+    // Initialize horizontal scroller
     initializeHorizontalScroller();
+    
+    // Initialize testimonial carousel
+    initializeTestimonialCarousel();
 });
 
 // Form submission handler
@@ -227,4 +230,78 @@ function initializeHorizontalScroller() {
 
     // Add grab cursor style
     scrollContainer.style.cursor = 'grab';
+}
+
+// Initialize Testimonial Carousel
+function initializeTestimonialCarousel() {
+    const carousel = document.getElementById('testimonialCarousel');
+    if (!carousel) return;
+
+    // Initialize Bootstrap carousel with custom options
+    const testimonialCarousel = new bootstrap.Carousel(carousel, {
+        interval: 5000,
+        wrap: true,
+        keyboard: true,
+        pause: 'hover',
+        touch: true
+    });
+
+    // Add dynamic indicators
+    const items = carousel.querySelectorAll('.carousel-item');
+    const indicators = carousel.querySelector('.carousel-indicators');
+    
+    if (indicators) {
+        items.forEach((_, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.setAttribute('data-bs-target', '#testimonialCarousel');
+            button.setAttribute('data-bs-slide-to', index);
+            button.setAttribute('aria-label', `Slide ${index + 1}`);
+            if (index === 0) {
+                button.classList.add('active');
+                button.setAttribute('aria-current', 'true');
+            }
+            indicators.appendChild(button);
+        });
+    }
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            testimonialCarousel.prev();
+        } else if (e.key === 'ArrowRight') {
+            testimonialCarousel.next();
+        }
+    });
+
+    // Add touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            testimonialCarousel.next();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            testimonialCarousel.prev();
+        }
+    }
+
+    // Add pause on hover
+    carousel.addEventListener('mouseenter', () => {
+        testimonialCarousel.pause();
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        testimonialCarousel.cycle();
+    });
 } 
