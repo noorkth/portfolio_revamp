@@ -827,25 +827,42 @@ ul.nav > li > a.active{
     border-radius: 10px;
     transition: all 0.3s ease;
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.service-content:hover{
-    background-color: rgba(255,255,255,0.05);
-    transition: all 0.2s ease-in-out;
+.service-content:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
 }
-.service-content i{
-    font-size: 40px;
+.service-content i {
+    font-size: 2.5rem;
     color: #ff4c4c;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
 }
-.service-content h3{
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+.service-content:hover i {
+    transform: scale(1.2);
+    color: #ff4c4c;
 }
-.service-content p{
-    color: #bbb;
-    font-size: 13px;
+.service-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.service-content:hover h3 {
+    color: #ff4c4c;
+}
+.service-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+}
+.service-content:hover p {
+    color: #fff;
 }
 
 /* ==========================================================================
@@ -1880,45 +1897,58 @@ ul.nav > li > a.active{
 }
 
 .projects-section {
-    position: relative;
-    overflow: hidden;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.5s ease !important;
 }
 
 .projects-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url(../img/projects-bg.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: scale(1.2);
-    animation: slowZoom 15s ease-in-out infinite alternate;
-    z-index: -1;
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image: url(../img/projects-bg.jpg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transform: scale(1.2) !important;
+    animation: slowZoom 15s ease-in-out infinite alternate !important;
+    z-index: -1 !important;
+    transition: all 0.5s ease !important;
+}
+
+.projects-section:hover::before {
+    transform: scale(1.4) !important;
+    filter: brightness(1.2) contrast(1.1) !important;
+    animation-play-state: paused !important;
 }
 
 @keyframes slowZoom {
     0% {
-        transform: scale(1.2) translate(0, 0);
+        transform: scale(1.2) translate(0, 0) !important;
     }
     50% {
-        transform: scale(1.3) translate(-2%, -2%);
+        transform: scale(1.3) translate(-2%, -2%) !important;
     }
     100% {
-        transform: scale(1.2) translate(2%, 2%);
+        transform: scale(1.2) translate(2%, 2%) !important;
     }
 }
 
 .projects-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: -1;
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    z-index: -1 !important;
+    transition: all 0.5s ease !important;
+}
+
+.projects-section:hover::after {
+    background: rgba(0, 0, 0, 0.65) !important;
 }  
