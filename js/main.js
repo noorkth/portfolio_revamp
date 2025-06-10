@@ -65,6 +65,68 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize testimonial carousel
     initializeTestimonialCarousel();
+
+    // Video Player Functionality
+    const videoItems = document.querySelectorAll('.project-item .project-video');
+    const videoPlayBtns = document.querySelectorAll('.video-play-btn');
+
+    videoPlayBtns.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            const videoItem = videoItems[index];
+            const projectItem = videoItem.closest('.project-item');
+            
+            // Add playing class to project item
+            projectItem.classList.add('playing');
+            
+            // Play video
+            videoItem.play();
+            
+            // Show controls
+            videoItem.controls = true;
+        });
+    });
+
+    videoItems.forEach((video, index) => {
+        // Skip adding play event listener for autoplay videos
+        if (!video.hasAttribute('autoplay')) {
+            video.addEventListener('play', function() {
+                const projectItem = video.closest('.project-item');
+                projectItem.classList.add('playing');
+            });
+        }
+
+        video.addEventListener('pause', function() {
+            const projectItem = video.closest('.project-item');
+            projectItem.classList.remove('playing');
+        });
+
+        video.addEventListener('ended', function() {
+            const projectItem = video.closest('.project-item');
+            projectItem.classList.remove('playing');
+            video.controls = false;
+        });
+    });
+
+    // Initialize VenoBox for popups
+    new VenoBox({
+        selector: '.img-popup',
+        numeration: true,
+        infinigall: true,
+        share: false,
+        spinner: 'rotating-plane'
+    });
+
+    // Initialize VenoBox for videos
+    new VenoBox({
+        selector: '.video-popup',
+        numeration: true,
+        infinigall: true,
+        share: false,
+        spinner: 'rotating-plane',
+        autoplay: true,
+        maxWidth: '90%',
+        maxHeight: '90%'
+    });
 });
 
 // Form submission handler
