@@ -304,4 +304,55 @@ function initializeTestimonialCarousel() {
     carousel.addEventListener('mouseleave', () => {
         testimonialCarousel.cycle();
     });
-} 
+}
+
+// Contact Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError = document.getElementById('formError');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const submitText = submitButton.querySelector('.submit-text');
+    const loadingIcon = submitButton.querySelector('.loading-icon');
+
+    // Close message buttons
+    document.querySelectorAll('.close-message').forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('.form-message').style.display = 'none';
+        });
+    });
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitButton.classList.add('is-submitting');
+        
+        try {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Show success message
+                formSuccess.style.display = 'flex';
+                // Reset form
+                this.reset();
+            } else {
+                // Show error message
+                formError.style.display = 'flex';
+            }
+        } catch (error) {
+            // Show error message
+            formError.style.display = 'flex';
+        } finally {
+            // Remove loading state
+            submitButton.classList.remove('is-submitting');
+        }
+    });
+}); 

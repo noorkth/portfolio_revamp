@@ -426,7 +426,7 @@
                             <div class="testimonial-item">
                                 <div class="testimonial-content">
                                     <div class="testimonial-text">
-                                        <p>"Working with Noor on our real estate project was a pleasure. His aerial shots helped us showcase the property in a way that traditional photography couldn't."</p>
+                                        <p>"Working with Noor on our projects was a pleasure. His aerial shots helped us showcase the architecture in a way that traditional photography couldn't."</p>
                                     </div>
                                     <div class="testimonial-author">
                                         <!-- <img src="img/testimonials/avatar2.jpg" alt="Rm Pandey" class="rounded-circle"> -->
@@ -520,52 +520,90 @@
         </div>
     </section>
 
-    <section id="contact" class="contact-section bg-dark">
-        <div class="container-fluid">
-            <div class="row contact-wrap">
-                <div class="col-lg-6 col-md-12 p-5">
-                    <div class="contact-info mb-30">
-                        <h2>Let's work together on projects<br>Send me a message here</h2>
-                    </div>
-                    <div class="contact-form">
-                        <form action="https://formspree.io/f/xovwaadd" method="POST" id="contact-form">
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="email" id="email" name="_replyto" class="form-control" placeholder="Your Email" required>
-                                </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Get In Touch</h2>
+                <p>Let's discuss your next project</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Contact Info Cards -->
+                <div class="col-lg-6">
+                    <div class="contact-info-wrapper">
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper">
+                                <i class="fa fa-map-marker"></i>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <textarea id="message" name="message" cols="30" rows="5" class="form-control message" placeholder="Your Message" required></textarea>
-                                </div>
+                            <h4>Location</h4>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper">
+                                <i class="fa fa-envelope"></i>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <button type="submit" class="default-btn submit-button" onclick="googleTracker('button', 'submit Button')">
-                                        <span class="submit-text">Send Message</span>
-                                        <span class="loading-icon" style="display:none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-                                    </button>
-                                </div>
+                            <h4>Email</h4>
+                            <p>Kayastha.noor1100@gmail.com</p>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper">
+                                <i class="fa fa-phone"></i>
                             </div>
-                            <div id="form-result" class="alert" style="display:none;"></div>
-                        </form>
+                            <h4>Phone</h4>
+                            <p>+977 984-1618689</p>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            <h4>Working Hours</h4>
+                            <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-md-12 p-0">
-                    <div class="map-container h-100">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d220.7710262505699!2d85.33187231238384!3d27.706897332251582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1749401089860!5m2!1sen!2snp"
-                            width="100%"
-                            height="100%"
-                            style="border:0; min-height: 500px;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            title="Location Map">
-                        </iframe>
+                
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xovwaadd" method="POST">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span class="submit-text">Send Message</span>
+                                <span class="loading-icon"><i class="fa fa-spinner fa-spin"></i></span>
+                            </button>
+                        </form>
+                        <div id="formSuccess" class="form-message success-message">
+                            <div class="message-content">
+                                <i class="fa fa-check-circle"></i>
+                                <h4>Thank You!</h4>
+                                <p>Your message has been sent successfully.</p>
+                                <button class="close-message"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div id="formError" class="form-message error-message">
+                            <div class="message-content">
+                                <i class="fa fa-exclamation-circle"></i>
+                                <h4>Oops!</h4>
+                                <p>Something went wrong. Please try again.</p>
+                                <button class="close-message"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-overlay"></div>
                     </div>
                 </div>
             </div>
