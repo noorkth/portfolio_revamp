@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         spinner: 'rotating-plane'
     });
 
-    // Initialize VenoBox for videos
+    // Initialize VenoBox for videos with custom settings
     new VenoBox({
         selector: '.video-popup',
         numeration: true,
@@ -125,7 +125,22 @@ document.addEventListener('DOMContentLoaded', function() {
         spinner: 'rotating-plane',
         autoplay: true,
         maxWidth: '90%',
-        maxHeight: '90%'
+        maxHeight: '90%',
+        closeColor: '#fff',
+        closeBackground: 'rgba(255, 255, 255, 0.2)',
+        closeButton: true,
+        overlayColor: 'rgba(0, 0, 0, 0.9)',
+        overlayClose: true,
+        overlayCloseClick: true,
+        onOpen: function() {
+            // Ensure close button is visible
+            const closeBtn = document.querySelector('.vbox-close');
+            if (closeBtn) {
+                closeBtn.style.display = 'block';
+                closeBtn.style.visibility = 'visible';
+                closeBtn.style.opacity = '1';
+            }
+        }
     });
 });
 

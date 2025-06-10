@@ -2211,4 +2211,93 @@ ul.nav > li > a.active{
 
 .project-item.playing .project-video {
     transform: none;
+}
+
+/* VenoBox Video Popup Styles */
+.vbox-overlay {
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 999999 !important;
+}
+
+.vbox-container {
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    z-index: 1000000 !important;
+}
+
+/* Custom Close Button */
+.vbox-close,
+.vbox-close:before,
+.vbox-close:after {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: #ff0000 !important; /* Bright red background */
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    z-index: 1000001 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    border: 2px solid white !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+}
+
+.vbox-close:before,
+.vbox-close:after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 20px !important;
+    height: 3px !important; /* Thicker X */
+    background: white !important;
+    transform-origin: center !important;
+}
+
+.vbox-close:before {
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+}
+
+.vbox-close:after {
+    transform: translate(-50%, -50%) rotate(-45deg) !important;
+}
+
+.vbox-close:hover {
+    background: #ff3333 !important; /* Lighter red on hover */
+    transform: scale(1.1) !important;
+}
+
+/* Video container styles */
+.vbox-content {
+    position: relative !important;
+    z-index: 1000000 !important;
+}
+
+.vbox-content video {
+    max-width: 100% !important;
+    max-height: 90vh !important;
+    margin: 0 auto !important;
+    display: block !important;
+    z-index: 1000000 !important;
+}
+
+/* Ensure video doesn't block interactions */
+.vbox-content video::-webkit-media-controls {
+    z-index: 1000001 !important;
+}
+
+/* Add a text label to the close button */
+.vbox-close::after {
+    content: 'Close' !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    color: white !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5) !important;
 }  
