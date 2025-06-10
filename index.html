@@ -8,6 +8,17 @@
     <meta name="keywords" content="Noor Kayastha, IT Professional, Videographer, Drone Pilot, Nepal, Portfolio">
     <meta name="author" content="Noor Kayastha">
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style">
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="img/logo.png" as="image" fetchpriority="high">
+    <link rel="preload" href="img/Noor.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="img/festival.jpg" as="image" fetchpriority="high">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.noorkayastha.com.np/">
@@ -26,11 +37,6 @@
     
     <title>Noor Kayastha | IT Professional & Drone Enthusiast</title>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style">
-    <link rel="preload" href="css/main.css" as="style">
-    <link rel="preload" href="/img1.jpg" as="image">
-    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
@@ -39,7 +45,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/nk.png">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/themify-icons.css">
     <link rel="stylesheet" href="css/elegant-font-icons.css">
     <link rel="stylesheet" href="css/elegant-line-icons.css">
@@ -53,12 +59,15 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CK4ZN4QTJ0"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CK4ZN4QTJ0" crossorigin="anonymous"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-CK4ZN4QTJ0');
+    gtag('config', 'G-CK4ZN4QTJ0', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+    });
     </script>
     
     <!-- Structured Data -->
@@ -78,12 +87,27 @@
         "@type": "PostalAddress",
         "addressLocality": "Kathmandu",
         "addressCountry": "Nepal"
-      }
+      },
+      "description": "IT Professional with expertise in drone videography, video editing, and PC hardware. Skilled in piano and bass guitar.",
+      "knowsAbout": [
+        "Drone Videography",
+        "Video Editing",
+        "PC Hardware",
+        "Music",
+        "Piano",
+        "Bass Guitar"
+      ],
+      "image": "https://www.noorkayastha.com.np/img/Noor.jpg"
     }
     </script>
 
     <!-- Modernizr for feature detection -->
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" defer></script>
+
+    <!-- Optimize Image Loading -->
+    <img src="img/logo.png" alt="Noor Kayastha Logo" width="150" height="50" loading="eager" decoding="async">
+    <img src="img/Noor.jpg" alt="Noor Kayastha" width="300" height="300" loading="eager" decoding="async">
+    <img src="img/festival.jpg" alt="Festival Celebration" width="800" height="600" loading="lazy" decoding="async">
 </head>
 <body data-spy="scroll" data-target="#navmenu" data-offset="70">
     <!-- Skip to content link for accessibility -->
@@ -94,14 +118,14 @@
 
     <header id="header" class="header-section">
         <div class="container">
-            <nav class="navbar">
-                <a href="#home" class="navbar-brand">
+            <nav class="navbar" role="navigation" aria-label="Main navigation">
+                <a href="#home" class="navbar-brand" aria-label="Home">
                     <img src="img/logo.png" alt="Noor Kayastha Logo" width="120" height="40">
                 </a>
                 <div class="d-flex menu-wrap">
                    <div id="navmenu" class="mainmenu">
                        <ul class="nav">
-                            <li><a data-scroll class="nav-link active" href="#home">Home</a></li>
+                            <li><a data-scroll class="nav-link active" href="#home" aria-current="page">Home</a></li>
                             <li><a data-scroll class="nav-link" href="#about">About</a></li>
                             <li><a data-scroll class="nav-link" href="#services">Services</a></li>
                             <li><a data-scroll class="nav-link" href="#works">Projects</a></li>
@@ -167,8 +191,7 @@
                         <p class="mb-20">My unique combination of technical skills and artistic vision allows me to approach problems from multiple perspectives. I believe the best solutions come when logic meets creativity.</p>
                     </div>
                     <div class="button-group mt-4">
-                        <a href="#works" class="default-btn">My Works</a>
-                        <a href="#contact" class="default-btn">Contact</a>
+                        <a href="#works" class="default-btn">See My Works</a>                        
                     </div>
                 </div>
             </div>
@@ -668,6 +691,23 @@
                 touch: true
             });
         });
+    </script>
+
+    <!-- Progressive Enhancement -->
+    <noscript>
+        <div class="no-js-message">
+            <p>For the best experience, please enable JavaScript in your browser.</p>
+        </div>
+    </noscript>
+    
+    <!-- Fallback for older browsers -->
+    <script>
+        if (!('IntersectionObserver' in window)) {
+            // Load polyfill for older browsers
+            var script = document.createElement('script');
+            script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+            document.head.appendChild(script);
+        }
     </script>
 </body>
 </html>

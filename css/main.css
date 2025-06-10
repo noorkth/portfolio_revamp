@@ -820,49 +820,104 @@ ul.nav > li > a.active{
     color: white;
 }
 
-.portfolio-section{
-    padding-bottom: 0;
-}
-.portfolio-section .section-heading p{
-    color: #ddd;
-}
-.portfolio-items .col-lg-4{
-    padding: 0;
-}
-.portfolio-wrap{
-    display: flex;
-    align-items: center;
-}
-.portfolio-content{}
-.portfolio-thumb img{
-    width: 100%;
-}
-.portfolio-thumb{
+.portfolio-section {
     position: relative;
+    background: url('../img/festival.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
 }
-.portfolio-box .hover{
+
+.portfolio-section::before {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
     top: 0;
-    
-    opacity: 0;
-    visibility: hidden;
-    padding: 15px;
-}
-.portfolio-box .hover div{
-    background-color: rgba(255,255,255,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.85) 50%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
+    z-index: 1;
+    animation: gradientShift 15s ease infinite;
 }
-.portfolio-box:hover .hover{
-    opacity: 1;
-    visibility: visible;
+
+.portfolio-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/festival.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.1;
+    z-index: 0;
+    animation: zoomEffect 20s ease infinite;
 }
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.portfolio-section .container-fluid {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add subtle shine effect to project items */
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    animation: shineEffect 8s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes shineEffect {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
 /* ==========================================================================
    CTA Section
    ========================================================================== */
