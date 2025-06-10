@@ -142,6 +142,108 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Portfolio Section Loading
+    const portfolioSection = document.querySelector('.portfolio-section');
+    const projectImages = document.querySelectorAll('.project-image');
+    const projectVideos = document.querySelectorAll('.project-video');
+
+    // Add loading class to portfolio section
+    portfolioSection.classList.add('loading');
+
+    // Handle image loading
+    projectImages.forEach(img => {
+        img.classList.add('loading');
+        
+        if (img.complete) {
+            img.classList.remove('loading');
+        } else {
+            img.addEventListener('load', function() {
+                img.classList.remove('loading');
+            });
+            
+            img.addEventListener('error', function() {
+                img.src = 'img/placeholder.jpg'; // Fallback image
+                img.classList.remove('loading');
+            });
+        }
+    });
+
+    // Handle video loading
+    projectVideos.forEach(video => {
+        video.classList.add('loading');
+        
+        video.addEventListener('loadeddata', function() {
+            video.classList.remove('loading');
+        });
+        
+        video.addEventListener('error', function() {
+            video.classList.remove('loading');
+            // Replace video with fallback image
+            const fallbackImg = document.createElement('img');
+            fallbackImg.src = 'img/placeholder.jpg';
+            fallbackImg.alt = 'Video not available';
+            fallbackImg.classList.add('project-image');
+            video.parentNode.replaceChild(fallbackImg, video);
+        });
+    });
+
+    // Remove loading class when all media is loaded
+    Promise.all([
+        ...Array.from(projectImages).map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+                img.addEventListener('load', resolve);
+                img.addEventListener('error', resolve);
+            });
+        }),
+        ...Array.from(projectVideos).map(video => {
+            return new Promise(resolve => {
+                video.addEventListener('loadeddata', resolve);
+                video.addEventListener('error', resolve);
+            });
+        })
+    ]).then(() => {
+        portfolioSection.classList.remove('loading');
+    });
+});
+
+// Lazy loading for images and videos
+if ('IntersectionObserver' in window) {
+    const mediaObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const media = entry.target;
+                if (media.tagName === 'VIDEO') {
+                    media.load();
+                } else if (media.tagName === 'IMG' && media.dataset.src) {
+                    media.src = media.dataset.src;
+                }
+                observer.unobserve(media);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.project-image[data-src], .project-video').forEach(media => {
+        mediaObserver.observe(media);
+    });
+}
+
+// Keyboard navigation for project items
+document.querySelectorAll('.project-item').forEach(item => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', item.querySelector('.project-info h3')?.textContent || 'Project item');
+
+    item.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    });
 });
 
 // Form submission handler

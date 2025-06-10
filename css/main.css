@@ -792,12 +792,16 @@ ul.nav > li > a.active{
     position: relative;
     background: url('../img/festival.jpg') no-repeat center center;
     background-size: cover;
-    background-attachment: fixed;
     padding: 100px 0;
     overflow: hidden;
 }
 
-.portfolio-section::before {
+/* Add loading state */
+.portfolio-section.loading {
+    background: #1a1a1a;
+}
+
+.portfolio-section.loading::before {
     content: '';
     position: absolute;
     top: 0;
@@ -805,6 +809,25 @@ ul.nav > li > a.active{
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.85);
+    z-index: 1;
+}
+
+/* Enhanced background overlay with gradient */
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.85) 25%,
+        rgba(0, 0, 0, 0.75) 50%,
+        rgba(0, 0, 0, 0.85) 75%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
     z-index: 1;
 }
 
@@ -822,12 +845,27 @@ ul.nav > li > a.active{
     align-items: center;
 }
 
-/* Project Grid Styles */
+/* Project Grid with Fallback */
 .project-grid {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem;
+}
+
+/* Fallback for older browsers */
+@supports not (display: grid) {
+    .project-grid {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -1rem;
+    }
+    .project-item {
+        flex: 0 0 calc(33.333% - 2rem);
+        margin: 1rem;
+    }
 }
 
 .project-item {
@@ -836,10 +874,19 @@ ul.nav > li > a.active{
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Add focus styles for accessibility */
+    outline: none;
+}
+
+.project-item:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 
 .project-item.featured {
+    -ms-grid-column-span: 2;
     grid-column: span 2;
+    -ms-grid-row-span: 2;
     grid-row: span 2;
 }
 
@@ -849,12 +896,25 @@ ul.nav > li > a.active{
     height: 100%;
 }
 
+/* Add loading placeholder */
 .project-video,
 .project-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    background: #2a2a2a; /* Placeholder color */
+}
+
+.project-video.loading,
+.project-image.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.6; }
 }
 
 .project-overlay {
@@ -872,69 +932,32 @@ ul.nav > li > a.active{
     padding: 2rem;
 }
 
-.project-info {
-    text-align: center;
-    color: #fff;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.project-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.project-info p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
-}
-
+/* Improve touch targets for mobile */
 .project-link {
     display: inline-block;
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem; /* Larger touch target */
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border-radius: 25px;
     text-decoration: none;
     transition: background 0.3s ease;
-}
-
-.project-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-/* Hover Effects */
-.project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-.project-item:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-item:hover .project-info {
-    transform: translateY(0);
-}
-
-.project-item:hover .project-video,
-.project-item:hover .project-image {
-    transform: scale(1.05);
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
     .project-item.featured {
+        -ms-grid-column-span: 1;
         grid-column: span 1;
+        -ms-grid-row-span: 1;
         grid-row: span 1;
     }
 }
 
 @media (max-width: 768px) {
     .project-grid {
+        -ms-grid-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1rem;
     }
@@ -945,6 +968,16 @@ ul.nav > li > a.active{
     
     .project-info p {
         font-size: 0.9rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .portfolio-section {
+        background: none;
+    }
+    .project-overlay {
+        display: none;
     }
 }
 
