@@ -1,189 +1,167 @@
 /* Olio Theme Scripts */
 
-(function($){ "use strict";
+(function($) {
+    "use strict";
              
-    $(window).on('load', function() {
-        $('body').addClass('loaded');
-    });
+    // Initialize when window is loaded
+    $(window).on('load', () => $('body').addClass('loaded'));
 
-             
-/*=========================================================================
-	Sticky Header
-=========================================================================*/ 
-	$(function() {
-		var header = $("#header"),
-			yOffset = 0,
-			triggerPoint = 80;
-		$(window).on( 'scroll', function() {
-			yOffset = $(window).scrollTop();
+    // Sticky Header
+    (function() {
+        const header = $("#header");
+        const triggerPoint = 80;
+        
+        $(window).on('scroll', () => {
+            const yOffset = $(window).scrollTop();
+            header.toggleClass("navbar-fixed-top", yOffset >= triggerPoint);
+        });
+    })();
 
-			if (yOffset >= triggerPoint) {
-				header.addClass("navbar-fixed-top");
-			} else {
-				header.removeClass("navbar-fixed-top");
-			}
-
-		});
-	});
-
-/*=========================================================================
-        textrotator
-=========================================================================*/
+    // Text Rotator
     $(".rotate").textrotator({
-      animation: "flipUp", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
-      separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
-      speed: 2000 // How many milliseconds until the next word show.
+        animation: "flipUp",
+        separator: ",",
+        speed: 2000
     }); 
 
-/*=========================================================================
-        Mobile Menu
-=========================================================================*/  
+    // Mobile Menu
     $('.menu-wrap ul.nav').slicknav({
         prependTo: '.header-section .navbar',
         label: '',
         allowParentLinks: true
     });
              
-/*=========================================================================
-        Active venobox
-=========================================================================*/
-	$('.img-popup').venobox({
-		numeratio: true,
-		infinigall: true
-	});              
+    // Venobox
+    $('.img-popup').venobox({
+        numeratio: true,
+        infinigall: true
+    });              
                           
-             
-/*=========================================================================
-	Initialize smoothscroll plugin
-=========================================================================*/
-	smoothScroll.init({
-		offset: 60
-	});
+    // Initialize smoothscroll
+    smoothScroll.init({
+        offset: 60
+    });
 	 
-/*=========================================================================
-	Scroll To Top
-=========================================================================*/ 
-    $(window).on( 'scroll', function () {
-        if ($(this).scrollTop() > 100) {
-            $('#scroll-to-top').fadeIn();
-        } else {
-            $('#scroll-to-top').fadeOut();
-        }
+    // Scroll To Top
+    $(window).on('scroll', function() {
+        $('#scroll-to-top').fadeToggle($(this).scrollTop() > 100);
     });
 
-/*=========================================================================
-	WOW Active
-=========================================================================*/ 
-   new WOW().init(); 
-
-/*=========================================================================
-    Google Map Settings
-=========================================================================*/
-    // google.maps.event.addDomListener(window, 'load', init);
-
-    // function init() {
-
-    //     var mapOptions = {
-    //         zoom: 11,
-    //         center: new google.maps.LatLng(27.7066795,85.3317542), 
-    //         scrollwheel: false,
-    //         navigationControl: false,
-    //         mapTypeControl: false,
-    //         scaleControl: false,
-    //         draggable: false,
-    //         styles: [{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}]
-    //     };
-
-    //     var mapElement = document.getElementById('google-map');
-
-    //     var map = new google.maps.Map(mapElement, mapOptions);
-
-    //     var marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng(40.6700, -73.9400),
-    //         map: map,
-    //         title: 'Location!'
-    //     });
-    // }     
-
+    // Initialize WOW
+    new WOW().init(); 
 
 })(jQuery);
 
-// Formspree Form Handling
+// Combined DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
+    // Form handling
     const contactForm = document.getElementById('contact-form');
-    
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const submitBtn = form.querySelector('.submit-button');
-            const submitText = form.querySelector('.submit-text');
-            const loadingIcon = form.querySelector('.loading-icon');
-            const formResult = document.getElementById('form-result');
-            
-            // Show loading state
-            submitText.style.display = 'none';
-            loadingIcon.style.display = 'inline-block';
-            formResult.style.display = 'none';
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    formResult.innerHTML = 'Message sent successfully! I will get back to you soon. <span class="close-message">&times;</span>';
-                    formResult.classList.add('form-success');
-                    formResult.classList.remove('form-error');
-                    formResult.style.display = 'block';
-                    form.reset();
-                    
-                    // Add click handler for close button
-                    formResult.querySelector('.close-message').addEventListener('click', () => {
-                        formResult.style.display = 'none';
-                    });
-                    
-                    // Hide the message after 5 seconds
-                    const successTimer = setTimeout(() => {
-                        formResult.style.display = 'none';
-                        clearTimeout(successTimer);
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                formResult.innerHTML = 'Oops! Something went wrong. Please try again or contact me directly. <span class="close-message">&times;</span>';
-                formResult.classList.add('form-error');
-                formResult.classList.remove('form-success');
-                formResult.style.display = 'block';
-                
-                // Add click handler for close button
-                formResult.querySelector('.close-message').addEventListener('click', () => {
-                    formResult.style.display = 'none';
-                });
-            })
-            .finally(() => {
-                submitText.style.display = 'inline-block';
-                loadingIcon.style.display = 'none';
-            });
-        });
+        contactForm.addEventListener('submit', handleFormSubmit);
     }
+
+    // Horizontal scroller
+    initializeHorizontalScroller();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const scrollContainer = document.querySelector('.horizontal-scroller-scroll');
+// Form submission handler
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('.submit-button');
+    const submitText = form.querySelector('.submit-text');
+    const loadingIcon = form.querySelector('.loading-icon');
+    const formResult = document.getElementById('form-result');
+    
+    // Show loading state
+    updateFormUI(submitText, loadingIcon, formResult, 'loading');
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Form submission failed');
+        return response;
+    })
+    .then(() => {
+        updateFormUI(submitText, loadingIcon, formResult, 'success');
+        form.reset();
+        setupMessageTimeout(formResult);
+    })
+    .catch(() => {
+        updateFormUI(submitText, loadingIcon, formResult, 'error');
+    });
+}
+
+// Update form UI elements
+function updateFormUI(submitText, loadingIcon, formResult, state) {
+    const states = {
+        loading: {
+            text: 'none',
+            icon: 'inline-block',
+            result: 'none'
+        },
+        success: {
+            text: 'inline-block',
+            icon: 'none',
+            result: 'block',
+            message: 'Message sent successfully! I will get back to you soon.',
+            className: 'form-success'
+        },
+        error: {
+            text: 'inline-block',
+            icon: 'none',
+            result: 'block',
+            message: 'Oops! Something went wrong. Please try again or contact me directly.',
+            className: 'form-error'
+        }
+    };
+
+    const currentState = states[state];
+    submitText.style.display = currentState.text;
+    loadingIcon.style.display = currentState.icon;
+    
+    if (state !== 'loading') {
+        formResult.innerHTML = `${currentState.message} <span class="close-message">&times;</span>`;
+        formResult.className = `form-result ${currentState.className}`;
+        formResult.style.display = currentState.result;
+        setupCloseButton(formResult);
+    }
+}
+
+// Setup message timeout
+function setupMessageTimeout(formResult) {
+    const successTimer = setTimeout(() => {
+        formResult.style.display = 'none';
+        clearTimeout(successTimer);
+    }, 5000);
+}
+
+// Setup close button
+function setupCloseButton(formResult) {
+    formResult.querySelector('.close-message').addEventListener('click', () => {
+        formResult.style.display = 'none';
+    });
+}
+
+// Initialize horizontal scroller
+function initializeHorizontalScroller() {
+    const scrollContainer = document.querySelector('.horizontal-scroller');
+    const scrollItems = document.querySelectorAll('.horizontal-scroller-item');
     const scrollLeftBtn = document.querySelector('.scroller-arrow-left');
     const scrollRightBtn = document.querySelector('.scroller-arrow-right');
-    const scrollItems = document.querySelectorAll('.horizontal-scroller-item');
     
-    if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
-        // Calculate scroll amount (width of one item + margin)
-        const scrollAmount = scrollItems[0].offsetWidth + 20;
-        
+    if (!scrollContainer || !scrollItems.length) return;
+    
+    // Calculate scroll amount based on item width
+    const scrollAmount = scrollItems[0].offsetWidth + 20; // 20px for gap
+    
+    // Handle arrow button clicks
+    if (scrollLeftBtn && scrollRightBtn) {
         scrollLeftBtn.addEventListener('click', () => {
             scrollContainer.scrollBy({
                 left: -scrollAmount,
@@ -210,4 +188,43 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollRightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
         });
     }
-});
+    
+    // Enable smooth scrolling with mouse wheel
+    scrollContainer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        scrollContainer.scrollLeft += e.deltaY;
+    });
+    
+    // Enable touch scrolling
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    scrollContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        scrollContainer.style.cursor = 'grabbing';
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        scrollContainer.style.cursor = 'grab';
+    });
+
+    scrollContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        scrollContainer.style.cursor = 'grab';
+    });
+
+    scrollContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    // Add grab cursor style
+    scrollContainer.style.cursor = 'grab';
+} 
