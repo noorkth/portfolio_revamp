@@ -314,7 +314,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const submitText = submitButton.querySelector('.submit-text');
     const loadingIcon = submitButton.querySelector('.loading-icon');
-
+    
+    // Store submitted emails
+    const submittedEmails = new Set();
+    
     // Close message buttons
     document.querySelectorAll('.close-message').forEach(button => {
         button.addEventListener('click', function() {
@@ -322,8 +325,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Check for duplicate email submission
+    function isDuplicateEmail(email) {
+        return submittedEmails.has(email);
+    }
+
+    // Add email to submitted set
+    function addSubmittedEmail(email) {
+        submittedEmails.add(email);
+        // Store in localStorage for persistence
+        localStorage.setItem('submittedEmails', JSON.stringify([...submittedEmails]));
+    }
+
+    // Load previously submitted emails
+    function loadSubmittedEmails() {
+        const stored = localStorage.getItem('submittedEmails');
+        if (stored) {
+            const emails = JSON.parse(stored);
+            emails.forEach(email => submittedEmails.add(email));
+        }
+    }
+
+    // Initialize by loading stored emails
+    loadSubmittedEmails();
+
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        const email = this.querySelector('#email').value;
+        
+        // Check for duplicate submission
+        if (isDuplicateEmail(email)) {
+            formError.querySelector('p').textContent = 'You have already submitted a message with this email address. Please wait before submitting again.';
+            formError.style.display = 'flex';
+            return;
+        }
         
         // Show loading state
         submitButton.classList.add('is-submitting');
@@ -339,6 +375,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (response.ok) {
+                // Add email to submitted set
+                addSubmittedEmail(email);
                 // Show success message
                 formSuccess.style.display = 'flex';
                 // Reset form
