@@ -5,10 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="video-modal" id="videoModal">
             <div class="video-modal-content">
                 <button class="video-modal-close" aria-label="Close video">&times;</button>
-                <video id="modalVideo" controls>
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div id="modalVideoContainer">
+                    <video id="modalVideo" controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <iframe id="modalYouTube" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
         </div>
     `;
@@ -17,28 +24,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get modal elements
     const modal = document.getElementById('videoModal');
     const modalVideo = document.getElementById('modalVideo');
+    const modalYouTube = document.getElementById('modalYouTube');
     const closeBtn = document.querySelector('.video-modal-close');
 
-    console.log('Modal elements:', { modal, modalVideo, closeBtn });
+    console.log('Modal elements:', { modal, modalVideo, modalYouTube, closeBtn });
 
     // Function to open modal with video
     window.openVideoModal = function(videoSrc) {
-        console.log('Opening modal with video:', videoSrc);
-        if (modal && modalVideo) {
-            modalVideo.src = videoSrc;
+        if (modal) {
+            // Check if it's a YouTube video
+            if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+                // Extract video ID from YouTube URL
+                const videoId = videoSrc.split('v=')[1] || videoSrc.split('be/')[1];
+                if (videoId) {
+                    modalVideo.style.display = 'none';
+                    modalYouTube.style.display = 'block';
+                    modalYouTube.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                }
+            } else {
+                // Handle local video
+                modalVideo.style.display = 'block';
+                modalYouTube.style.display = 'none';
+                modalVideo.src = videoSrc;
+                modalVideo.play();
+            }
             modal.classList.add('active');
-            modalVideo.play();
             document.body.style.overflow = 'hidden';
         }
     };
 
     // Function to close modal
     function closeVideoModal() {
-        console.log('Closing modal');
-        if (modal && modalVideo) {
+        if (modal) {
             modal.classList.remove('active');
-            modalVideo.pause();
-            modalVideo.src = '';
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.src = '';
+            }
+            if (modalYouTube) {
+                modalYouTube.src = '';
+            }
             document.body.style.overflow = '';
         }
     }
