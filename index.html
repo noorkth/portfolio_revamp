@@ -673,7 +673,13 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section position-relative overflow-hidden">
+        <!-- Contact Background Image -->
+        <div class="bg-image-container position-absolute w-100 h-100">
+            <img src="img/contact.png" alt="Contact Background"
+                 class="img-fluid w-100 h-100"
+                 style="object-fit: cover; object-position: center;">
+        </div>
         <div class="container">
             <div class="section-header text-center">
                 <h2>Get In Touch</h2>
@@ -761,7 +767,7 @@
             </div>
         </div>
     </section>
-		    
+
     <footer class="footer-section align-center">
         <div class="container">
             <p>&copy; <span id="currentYear"></span> Noor Kayastha. All rights reserved.</p>
@@ -817,6 +823,95 @@
             script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
             document.head.appendChild(script);
         }
+    </script>
+
+ 
+
+    <!-- Floating Chatbase Widget -->
+    <style>
+    #floating-chatbot-btn {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      z-index: 9999;
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #floating-chatbot-iframe-container {
+      position: fixed;
+      top: 80px;
+      right: 32px;
+      width: 320px;
+      max-width: 95vw;
+      height: 450px;
+      z-index: 9999;
+      display: none;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+    #floating-chatbot-iframe-container.open {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      #floating-chatbot-iframe-container {
+        width: 98vw;
+        right: 1vw;
+        height: 60vh;
+        top: 60px;
+      }
+      #floating-chatbot-btn {
+        right: 12px;
+        top: 12px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+    </style>
+
+    <button id="floating-chatbot-btn" aria-label="Open chat">
+      💬
+    </button>
+    <div id="floating-chatbot-iframe-container">
+      <iframe
+        src="https://www.chatbase.co/chatbot-iframe/c8RGTe3TpDYP_Vhy9qT3k"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        frameborder="0"
+        allow="clipboard-write"
+      ></iframe>
+    </div>
+    <script>
+    const btn = document.getElementById('floating-chatbot-btn');
+    const container = document.getElementById('floating-chatbot-iframe-container');
+    let isOpen = false;
+    btn.onclick = function() {
+      isOpen = !isOpen;
+      container.classList.toggle('open', isOpen);
+      btn.innerHTML = isOpen ? '✖' : '💬';
+      btn.setAttribute('aria-label', isOpen ? 'Close chat' : 'Open chat');
+    };
+    document.addEventListener('click', function(e) {
+      if (isOpen && !container.contains(e.target) && e.target !== btn) {
+        isOpen = false;
+        container.classList.remove('open');
+        btn.innerHTML = '💬';
+        btn.setAttribute('aria-label', 'Open chat');
+      }
+    });
     </script>
 </body>
 </html>
