@@ -875,6 +875,7 @@ ul.nav > li > a.active{
     background-size: cover;
     padding: 100px 0;
     overflow: hidden;
+    padding-bottom: 60px;
 }
 
 /* Add loading state */
@@ -915,6 +916,7 @@ ul.nav > li > a.active{
 .portfolio-section .container-fluid {
     position: relative;
     z-index: 2;
+    padding-bottom: 60px;
 }
 
 .portfolio-section .section-heading p {
@@ -937,7 +939,8 @@ ul.nav > li > a.active{
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 1rem;
-    margin-top: 2rem;
+    margin-top: -4rem;
+    margin-bottom: 2.5rem;
 }
 
 .project-item {
