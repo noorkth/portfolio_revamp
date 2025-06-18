@@ -921,11 +921,6 @@ ul.nav > li > a.active{
     color: #ddd;
 }
 
-.portfolio-section .section-heading .default-btn {
-    margin-top: 1.5rem;
-    display: inline-block;
-}
-
 .portfolio-wrap {
     display: flex;
     align-items: center;
@@ -937,7 +932,7 @@ ul.nav > li > a.active{
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 1rem;
-    margin-top: 2rem;
+    margin-top: -6rem;
 }
 
 .project-item {
@@ -1075,36 +1070,14 @@ ul.nav > li > a.active{
         grid-row: span 1;
     }
     
-    .portfolio-wrap {
-        flex-direction: column;
-    }
-    
-    .portfolio-section .col-md-4 {
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-    
-    .portfolio-section .section-heading {
-        padding: 0;
-    }
-    
     .project-grid {
-        margin-top: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 576px) {
-    .portfolio-section {
-        padding: 60px 0;
-    }
-    
-    .portfolio-section .section-heading {
-        margin-bottom: 1.5rem;
-    }
-    
     .project-grid {
-        margin-top: 1rem;
-        gap: 15px;
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2236,3 +2209,54 @@ ul.nav > li > a.active{
     background: inherit;
     z-index: -1 !important;
 }  
+/* === Responsive Fixes === */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container, .section, .content, .row {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+    .hero-section h1 {
+        font-size: 32px;
+    }
+    .hero-section p {
+        font-size: 16px;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+    .section {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 26px;
+    }
+    .hero-section p {
+        font-size: 14px;
+    }
+    .feature-box, .project-box, .testimonial-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1, h2, h3 {
+        font-size: 90%;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
